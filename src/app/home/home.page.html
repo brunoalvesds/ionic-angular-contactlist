@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Lista de Contatos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ul>
+      <li class="card" *ngFor="let item of contactList; let i = index" (click)="openContact(item, i)">
+        <div class="card-content">
+          <img src="../../assets/avatar.png" class="avatar" />
+          <div class="infos">
+            <h4 class="name">{{item.name}}</h4>
+            <div class="number">{{item.number}}</div>
+          </div>
+          <i class="open"></i>
+        </div>
+      </li>
+    </ul>
+    <div class="add-contact">+</div>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "ionic-contactlist",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

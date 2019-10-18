@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar class="custom-header">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Detalhes
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="highlight">
+    <img src="../../assets/avatar.png">
+  </div>
+
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-content>
+        <form [formGroup]="contactForm">
+          <label>Nome:</label>
+          <input type="text" formControlName="name" value="{{contactDetails.name}}"/>
+          <label>Número:</label>
+          <input type="text" formControlName="number" value="{{contactDetails.number}}"/>
+          <label>E-mail:</label>
+          <input type="text" formControlName="email" value="{{contactDetails.email}}"/>
+        </form>
+      </ion-card-content>
+    </ion-card>
+    <button>Editar Contato</button>
+  </div>
+</ion-content>

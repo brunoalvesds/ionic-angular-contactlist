@@ -1,0 +1,68 @@
+ul {
+  margin: 0;
+  padding: 0 0 100px 0;
+  list-style: none;
+}
+
+.card {
+  background-color: #342071;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: all 0.1s linear;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateX(5px);
+  }
+
+  .card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.avatar {
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.infos {
+  text-align: left;
+  flex: 1;
+  margin-left: 15px;
+
+  .name {
+    font-size: 18px;
+    color: white;
+  }
+
+  .number {
+    font-size: 16px;
+    color: #8b70dc;
+  }
+}
+
+.open {
+  width: 20px;
+  height: 20px;
+  background-image: url("https://icon-library.net/images/white-arrow-icon-png/white-arrow-icon-png-28.jpg");
+  background-size: cover;
+}
+
+.add-contact {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  font-size: 30px;
+  padding: 5px 12px;
+  background: rgb(12, 209, 209);
+  color: white;
+  font-weight: lighter;
+  border-radius: 50%;
+  text-shadow: #000;
+  cursor: pointer;
+}
