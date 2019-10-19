@@ -66,3 +66,13 @@ ul {
   text-shadow: #000;
   cursor: pointer;
 }
+
+.new-contact {
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 100px 50px;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+}

@@ -27,6 +27,7 @@
         </form>
       </ion-card-content>
     </ion-card>
-    <button>Editar Contato</button>
+    <button class="edit" (click)="editContact()" *ngIf="inputsDisabled">Editar Contato</button>
+    <button class="save" (click)="saveContact()" *ngIf="!inputsDisabled">Salvar</button>
   </div>
 </ion-content>

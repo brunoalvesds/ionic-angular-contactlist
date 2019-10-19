@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Lista de Contatos
+      Meus Contatos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,6 +9,7 @@
 <ion-content>
   <div class="ion-padding">
     <ul>
+      <p *ngIf="contactList.length == 0" style="color: white">Experimente adicionar seu primeiro contato.</p>
       <li class="card" *ngFor="let item of contactList; let i = index" (click)="openContact(item, i)">
         <div class="card-content">
           <img src="../../assets/avatar.png" class="avatar" />
@@ -20,6 +21,20 @@
         </div>
       </li>
     </ul>
-    <div class="add-contact">+</div>
+    <div class="new-contact" *ngIf="newContactActive">
+      <div class="card">
+        <form [formGroup]="contactForm">
+          <label>Nome:</label>
+          <input type="text" formControlName="name" value=""/>
+          <label>Número:</label>
+          <input type="text" formControlName="number" value=""/>
+          <label>E-mail:</label>
+          <input type="text" formControlName="email" value=""/>
+        </form>
+        <button class="save" (click)="addContact(); newContactActive = !newContactActive">Salvar</button>
+        <button (click)="newContactActive = !newContactActive">Cancelar</button>
+      </div>
+    </div>
+    <div class="add-contact" (click)="newContactActive = !newContactActive">+</div>
   </div>
 </ion-content>

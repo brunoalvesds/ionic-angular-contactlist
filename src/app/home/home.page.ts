@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Router, NavigationExtras } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ContactService } from '../contact-service.service';
 
 @Component({
   selector: 'app-home',
@@ -8,65 +9,20 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  contactList:object;
+  contactList = this.contactService.getContactsJson();
+  newContactActive: boolean = false;
 
-  constructor(private router: Router) {
-    this.contactList = [
-      {
-        id: 0,
-        name: "Ana Batista",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 1,
-        name: "Afonso Siqueira",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 2,
-        name: "Barbara Dias",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 3,
-        name: "Cristiano Ronaldo",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 4,
-        name: "Denis",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 5,
-        name: "Euclides B.",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 6,
-        name: "Fernanda W.",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-      {
-        id: 7,
-        name: "Fernanza Zattini",
-        number: "11 01020304",
-        email: "email@test.com"
-      },
-    ];
+  constructor(private router: Router, private contactService: ContactService) {
+    
+  }
+
+  addContact() {
+    this.contactService.addContact(this.contactForm.value);
+    this.contactList;
   }
 
   openContact(item, index) {
-    // console.log("eae: ", item);
-    // item = JSON.stringify(item);
-    // this.router.navigate(['/detalhes/'], item);
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
         special: JSON.stringify(item)
@@ -74,5 +30,12 @@ export class HomePage {
     };
     this.router.navigate(['detalhes'], navigationExtras);
   }
+
+  //Campos para edição
+  contactForm = new FormGroup({
+    name: new FormControl('name'),
+    number: new FormControl('number'),
+    email: new FormControl('email'),
+  });
 
 }

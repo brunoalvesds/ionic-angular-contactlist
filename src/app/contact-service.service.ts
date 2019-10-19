@@ -1,17 +1,42 @@
 import { Injectable } from '@angular/core';
 import { SQLiteObject } from '@ionic-native/sqlite';
 import { DatabaseService } from './database.service';
+import { concat } from 'rxjs';
 
 @Injectable()
 export class ContactService {
+  contactList: Array<any> = [
+    ];
 
   constructor(private dbProvider: DatabaseService) { }
+  
+  public pushToArray(arr, obj) {
+    const index = arr.findIndex((e) => e.id === obj.id);
+
+    if (index === -1) {
+      arr.push(obj);
+    } else {
+      arr[index] = obj;
+    }
+  }
+
+  public getContactsJson() {
+    return this.contactList;
+  }
+
+  public addContact(contactObj) {
+    this.contactList.push(contactObj);
+  }
+
+  public updateContactList(contactObj) {
+    this.pushToArray(this.contactList, contactObj);
+  }
 
   public insert(contact: Contact) {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
         let sql = 'insert into contacts (name, number) values (?, ?)';
-        let data = [contact.name, contact.price, contact.duedate, contact.active ? 1 : 0, contact.category_id];
+        let data = [contact.name, contact.email];
 
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -23,7 +48,7 @@ export class ContactService {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
         let sql = 'update contacts set name = ?, price = ?, duedate = ?, active = ?, category_id = ? where id = ?';
-        let data = [contact.name, contact.price, contact.duedate, contact.active ? 1 : 0, contact.category_id, contact.id];
+        let data = [contact.name, contact];
 
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -56,10 +81,6 @@ export class ContactService {
               let contact = new Contact();
               contact.id = item.id;
               contact.name = item.name;
-              contact.price = item.price;
-              contact.duedate = item.duedate;
-              contact.active = item.active;
-              contact.category_id = item.category_id;
 
               return contact;
             }
@@ -105,8 +126,6 @@ export class ContactService {
 export class Contact {
   id: number;
   name: string;
-  price: number;
-  duedate: Date;
-  active: boolean;
-  category_id: number;
+  number: number;
+  email: string;
 }
