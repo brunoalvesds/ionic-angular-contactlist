@@ -53,6 +53,11 @@ label {
   color: white;
 }
 
+button,
+input {
+  outline: none;
+}
+
 input {
   background-color: transparent;
   color: white;
@@ -84,5 +89,9 @@ button {
 
   &.save {
     background-color: #0cd1d1;
+  }
+
+  &.remove {
+    background-color: #d4224e;
   }
 }

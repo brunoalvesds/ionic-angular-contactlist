@@ -11,6 +11,7 @@ import { ContactService } from '../contact-service.service';
 export class HomePage {
   contactList = this.contactService.getContactsJson();
   newContactActive: boolean = false;
+  itemIndex: any;
 
   constructor(private router: Router, private contactService: ContactService) {
     
@@ -22,7 +23,8 @@ export class HomePage {
   }
 
   openContact(item, index) {
-
+    //posição do item na lista de contatos
+    item.id = index;
     let navigationExtras: NavigationExtras = {
       queryParams: {
         special: JSON.stringify(item)
@@ -35,7 +37,7 @@ export class HomePage {
   contactForm = new FormGroup({
     name: new FormControl('name'),
     number: new FormControl('number'),
-    email: new FormControl('email'),
+    email: new FormControl('email')
   });
 
 }

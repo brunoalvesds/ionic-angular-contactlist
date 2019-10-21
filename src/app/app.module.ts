@@ -12,7 +12,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 // import { ContactDetailsComponent } from './contact-details/contact-details.component';
-import { DatabaseService } from './database.service';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { ContactService } from './contact-service.service';
 
@@ -29,7 +28,6 @@ import { ContactService } from './contact-service.service';
   providers: [
     StatusBar,
     SplashScreen,
-    DatabaseService,
     ContactService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SQLite
