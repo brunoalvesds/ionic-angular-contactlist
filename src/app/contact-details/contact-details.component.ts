@@ -74,7 +74,7 @@ export class ContactDetailsComponent implements OnInit {
   }
 
   removeContact() {
-    var confirm = confirm("Deseja realmente remover este contato?");
+    var confirm = window.confirm("Deseja realmente remover este contato?");
     if (confirm) {
       this.nav.back();
       this.contactService.removeContact(this.contactDetails.id);

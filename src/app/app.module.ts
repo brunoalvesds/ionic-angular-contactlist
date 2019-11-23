@@ -6,14 +6,16 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-// import { ContactDetailsComponent } from './contact-details/contact-details.component';
-import { SQLite } from '@ionic-native/sqlite/ngx';
 import { ContactService } from './contact-service.service';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,8 @@ import { ContactService } from './contact-service.service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule
@@ -29,9 +33,10 @@ import { ContactService } from './contact-service.service';
     StatusBar,
     SplashScreen,
     ContactService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SQLite
+    AngularFirestore,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

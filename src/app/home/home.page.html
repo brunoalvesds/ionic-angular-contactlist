@@ -10,12 +10,12 @@
   <div class="ion-padding">
     <ul>
       <p *ngIf="contactList.length == 0" style="color: white">Experimente adicionar seu primeiro contato.</p>
-      <li class="card" *ngFor="let item of contactList; let i = index" (click)="openContact(item, i)">
+      <li class="card" *ngFor="let item of contactList; let i = index;" (click)="openContact(item.payload.val(), item.key)">
         <div class="card-content">
           <img src="../../assets/avatar.png" class="avatar" />
           <div class="infos">
-            <h4 class="name">{{item.name}}</h4>
-            <div class="number">{{item.number}}</div>
+            <h4 class="name">{{item.payload.val().name}}</h4>
+            <div class="number">{{item.payload.val().number}}</div>
           </div>
           <i class="open"></i>
         </div>
